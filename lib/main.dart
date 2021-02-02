@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './models/transaction.dart';
 import './widgets/chart.dart';
+import './widgets/balance.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,53 +60,25 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: appBar,
       body: Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.all(20),
-          child: Column(
-            children: <Widget>[
-              Text(
-                "0 €",
-                style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "Balance",
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton.icon(
-                    label: Text("Add money"),
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      print("Add");
-                    },
-                  ),
-                  ElevatedButton.icon(
-                    label: Text("Add expenses"),
-                    icon: Icon(Icons.remove),
-                    onPressed: () {
-                      print("Remove");
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Weekly expenses",
-                style: TextStyle(fontSize: 20),
-              ),
-              Container(
-                height: 200,
-                child: Chart(_recentTransactions),
-              ),
-            ],
-          )),
+        alignment: Alignment.center,
+        margin: EdgeInsets.all(20),
+        child: Column(
+          children: <Widget>[
+            Balance(),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Weekly expenses",
+              style: TextStyle(fontSize: 20),
+            ),
+            Container(
+              height: 200,
+              child: Chart(_recentTransactions),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
