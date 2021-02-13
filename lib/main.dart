@@ -59,24 +59,26 @@ class _HomePageState extends State<HomePage> {
         ]);
     return Scaffold(
       appBar: appBar,
-      body: Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            Balance(),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Weekly expenses",
-              style: TextStyle(fontSize: 20),
-            ),
-            Container(
-              height: 200,
-              child: Chart(_recentTransactions),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.all(20),
+          child: Column(
+            children: <Widget>[
+              Balance(),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Weekly expenses",
+                style: TextStyle(fontSize: 18),
+              ),
+              Container(
+                height: 200,
+                child: Chart(_recentTransactions),
+              ),
+            ],
+          ),
         ),
       ),
     );

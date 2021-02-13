@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 
+import './add_money.dart';
+
 class Balance extends StatefulWidget {
   @override
   _BalanceState createState() => _BalanceState();
+}
+
+void _startAddMoney(BuildContext ctx) {
+  showModalBottomSheet(
+    isScrollControlled: true,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+    context: ctx,
+    builder: (_) {
+      return AddMoney();
+    },
+  );
 }
 
 class _BalanceState extends State<Balance> {
@@ -17,7 +32,7 @@ class _BalanceState extends State<Balance> {
           ),
           Text(
             "Balance",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           ),
           SizedBox(
             height: 10,
@@ -29,6 +44,7 @@ class _BalanceState extends State<Balance> {
                 label: Text("Add money"),
                 icon: Icon(Icons.add),
                 onPressed: () {
+                  _startAddMoney(context);
                   print("Add");
                 },
               ),
