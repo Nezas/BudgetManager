@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           margin: EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              Balance(),
+              Balance(0),
               SizedBox(
                 height: 20,
               ),

@@ -2,12 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AddMoney extends StatefulWidget {
+  final Function addMoney;
+  AddMoney(this.addMoney);
+
   @override
   _AddMoneyState createState() => _AddMoneyState();
 }
 
 class _AddMoneyState extends State<AddMoney> {
   final _amountController = TextEditingController();
+
+  void _submitMoney() {
+    if (_amountController.text.isEmpty) {
+      return;
+    }
+
+    final enteredAmount = double.parse(_amountController.text);
+    if (enteredAmount <= 0) {
+      return;
+    }
+    widget.addMoney(enteredAmount);
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +49,7 @@ class _AddMoneyState extends State<AddMoney> {
                   decoration: InputDecoration(labelText: "Amount"),
                   controller: _amountController,
                   keyboardType: TextInputType.number,
+                  onSubmitted: (_) => _submitMoney(),
                 ),
               ),
               Container(
@@ -40,7 +57,7 @@ class _AddMoneyState extends State<AddMoney> {
                 child: ElevatedButton(
                   child: Text("Submit"),
                   onPressed: () {
-                    print("Submit");
+                    _submitMoney();
                   },
                 ),
               ),
