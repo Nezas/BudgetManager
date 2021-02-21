@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AddMoney extends StatefulWidget {
-  final Function addMoney;
-  AddMoney(this.addMoney);
+class AddTransaction extends StatefulWidget {
+  final Function addTransaction;
+  final String title;
+  AddTransaction(this.addTransaction, this.title);
 
   @override
-  _AddMoneyState createState() => _AddMoneyState();
+  _AddTransactionState createState() => _AddTransactionState();
 }
 
-class _AddMoneyState extends State<AddMoney> {
+class _AddTransactionState extends State<AddTransaction> {
   final _amountController = TextEditingController();
 
   void _submitMoney() {
     if (_amountController.text.isEmpty) {
       return;
     }
-
     final enteredAmount = double.parse(_amountController.text);
     if (enteredAmount <= 0) {
       return;
     }
-    widget.addMoney(enteredAmount);
+    widget.addTransaction(enteredAmount);
     Navigator.of(context).pop();
   }
 
@@ -39,7 +39,7 @@ class _AddMoneyState extends State<AddMoney> {
       child: Column(
         children: <Widget>[
           Text(
-            "Add money",
+            widget.title,
             style: TextStyle(fontSize: 18),
           ),
           Row(

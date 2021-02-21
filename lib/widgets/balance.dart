@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './add_money.dart';
+import './add_transaction.dart';
 
 //ignore: must_be_immutable
 class Balance extends StatefulWidget {
@@ -17,6 +17,12 @@ class _BalanceState extends State<Balance> {
     });
   }
 
+  void _addExpenses(double amount) {
+    setState(() {
+      widget.balance -= amount;
+    });
+  }
+
   void _startAddMoney(BuildContext ctx) {
     showModalBottomSheet(
       isScrollControlled: true,
@@ -25,7 +31,20 @@ class _BalanceState extends State<Balance> {
       ),
       context: ctx,
       builder: (_) {
-        return AddMoney(_addMoney);
+        return AddTransaction(_addMoney, "Add money");
+      },
+    );
+  }
+
+  void _startAddExpenses(BuildContext ctx) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      context: ctx,
+      builder: (_) {
+        return AddTransaction(_addExpenses, "Add expenses");
       },
     );
   }
@@ -54,14 +73,13 @@ class _BalanceState extends State<Balance> {
                 icon: Icon(Icons.add),
                 onPressed: () {
                   _startAddMoney(context);
-                  print("Add");
                 },
               ),
               ElevatedButton.icon(
                 label: Text("Add expenses"),
                 icon: Icon(Icons.remove),
                 onPressed: () {
-                  print("Remove");
+                  _startAddExpenses(context);
                 },
               ),
             ],
