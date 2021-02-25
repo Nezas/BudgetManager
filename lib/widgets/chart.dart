@@ -5,24 +5,24 @@ import '../models/transaction.dart';
 import './chart_bar.dart';
 
 class Chart extends StatelessWidget {
-  final List<Transaction> recentTransactions;
+  final List<Transaction> _recentTransactions;
 
-  Chart(this.recentTransactions);
+  Chart(this._recentTransactions);
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
       );
-      var totalSum = 0.0;
-      for (var i = 0; i < recentTransactions.length; i++) {
-        if (recentTransactions[i].date.day == weekDay.day) {
-          totalSum += recentTransactions[i].amount;
+      var _totalSum = 0.0;
+      for (var i = 0; i < _recentTransactions.length; i++) {
+        if (_recentTransactions[i].date.day == weekDay.day) {
+          _totalSum += _recentTransactions[i].amount;
         }
       }
       return {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
-        'amount': totalSum,
+        'amount': _totalSum,
       };
     }).reversed.toList();
   }
@@ -35,28 +35,41 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      elevation: 10,
-      margin: EdgeInsets.all(15),
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: groupedTransactionValues.map((data) {
-            return Expanded(
-              child: ChartBar(
-                data['day'],
-                data['amount'],
-                totalSpending == 0.0
-                    ? 0.0
-                    : (data['amount'] as double) / totalSpending,
+    return Container(
+      height: 230,
+      child: Column(
+        children: [
+          Text(
+            "Weekly expenses",
+            style: TextStyle(fontSize: 18),
+          ),
+          Expanded(
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
               ),
-            );
-          }).toList(),
-        ),
+              elevation: 10,
+              margin: EdgeInsets.all(15),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: groupedTransactionValues.map((data) {
+                    return Expanded(
+                      child: ChartBar(
+                        data['day'],
+                        data['amount'],
+                        totalSpending == 0.0
+                            ? 0.0
+                            : (data['amount'] as double) / totalSpending,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AddTransaction extends StatefulWidget {
-  final Function addTransaction;
-  final String title;
-  AddTransaction(this.addTransaction, this.title);
+  final Function _addTransaction;
+  final String _title;
+  AddTransaction(this._addTransaction, this._title);
 
   @override
   _AddTransactionState createState() => _AddTransactionState();
@@ -21,7 +20,7 @@ class _AddTransactionState extends State<AddTransaction> {
     if (enteredAmount <= 0) {
       return;
     }
-    widget.addTransaction(enteredAmount);
+    widget._addTransaction(enteredAmount);
     Navigator.of(context).pop();
   }
 
@@ -39,7 +38,7 @@ class _AddTransactionState extends State<AddTransaction> {
       child: Column(
         children: <Widget>[
           Text(
-            widget.title,
+            widget._title,
             style: TextStyle(fontSize: 18),
           ),
           Row(
@@ -55,7 +54,7 @@ class _AddTransactionState extends State<AddTransaction> {
               Container(
                 padding: EdgeInsets.only(left: 20, top: 15),
                 child: ElevatedButton(
-                  child: Text("Submit"),
+                  child: const Text("Submit"),
                   onPressed: () {
                     _submitMoney();
                   },

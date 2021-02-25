@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import './widgets/balance.dart';
+import './widgets/chart.dart';
+import './widgets/add_transaction.dart';
+import './models/transaction.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,21 +31,78 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  double _balance = 0;
+  final List<Transaction> _userTransactions = [];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((transaction) {
+      return transaction.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
+  void _addMoney(double amount) {
+    setState(() {
+      _balance += amount;
+    });
+  }
+
+  void _addExpenses(double amount) {
+    final newTx = Transaction(
+      amount: amount,
+      date: DateTime.now(),
+    );
+    setState(() {
+      _balance -= amount;
+      _userTransactions.add(newTx);
+    });
+  }
+
+  void _startAddMoney(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      context: context,
+      builder: (_) {
+        return AddTransaction(_addMoney, "Add money");
+      },
+    );
+  }
+
+  void _startAddExpenses(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      context: context,
+      builder: (_) {
+        return AddTransaction(_addExpenses, "Add expenses");
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-        title: Text(
-          "Overview",
-          style: TextStyle(fontSize: 32),
+      title: const Text(
+        "Overview",
+        style: TextStyle(fontSize: 32),
+      ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.settings),
+          onPressed: () {
+            print("Settings");
+          },
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              print("Settings");
-            },
-          ),
-        ]);
+      ],
+    );
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -51,7 +111,33 @@ class _HomePageState extends State<HomePage> {
           margin: EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              Balance(0),
+              Balance(_balance),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton.icon(
+                    label: const Text("Add money"),
+                    icon: Icon(Icons.add),
+                    onPressed: () {
+                      _startAddMoney(context);
+                    },
+                  ),
+                  ElevatedButton.icon(
+                    label: const Text("Add expenses"),
+                    icon: Icon(Icons.remove),
+                    onPressed: () {
+                      _startAddExpenses(context);
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Chart(_recentTransactions),
             ],
           ),
         ),
