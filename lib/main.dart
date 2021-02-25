@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './models/transaction.dart';
-import './widgets/chart.dart';
 import './widgets/balance.dart';
 
 void main() {
@@ -30,18 +28,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> _userTransactions = [];
-
-  List<Transaction> get _recentTransactions {
-    return _userTransactions.where((transaction) {
-      return transaction.date.isAfter(
-        DateTime.now().subtract(
-          Duration(days: 7),
-        ),
-      );
-    }).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
@@ -66,17 +52,6 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               Balance(0),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Weekly expenses",
-                style: TextStyle(fontSize: 18),
-              ),
-              Container(
-                height: 200,
-                child: Chart(_recentTransactions),
-              ),
             ],
           ),
         ),

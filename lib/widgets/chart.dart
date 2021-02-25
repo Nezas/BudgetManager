@@ -27,6 +27,12 @@ class Chart extends StatelessWidget {
     }).reversed.toList();
   }
 
+  double get totalSpending {
+    return groupedTransactionValues.fold(0.0, (sum, item) {
+      return sum + item['amount'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -44,6 +50,9 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 data['day'],
                 data['amount'],
+                totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
               ),
             );
           }).toList(),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import './add_transaction.dart';
+import './chart.dart';
+import '../models/transaction.dart';
 
 //ignore: must_be_immutable
 class Balance extends StatefulWidget {
@@ -11,6 +13,18 @@ class Balance extends StatefulWidget {
 }
 
 class _BalanceState extends State<Balance> {
+  final List<Transaction> _userTransactions = [];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((transaction) {
+      return transaction.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   void _addMoney(double amount) {
     setState(() {
       widget.balance += amount;
@@ -18,8 +32,13 @@ class _BalanceState extends State<Balance> {
   }
 
   void _addExpenses(double amount) {
+    final newTx = Transaction(
+      amount: amount,
+      date: DateTime.now(),
+    );
     setState(() {
       widget.balance -= amount;
+      _userTransactions.add(newTx);
     });
   }
 
@@ -83,6 +102,17 @@ class _BalanceState extends State<Balance> {
                 },
               ),
             ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Weekly expenses",
+            style: TextStyle(fontSize: 18),
+          ),
+          Container(
+            height: 200,
+            child: Chart(_recentTransactions),
           ),
         ],
       ),
