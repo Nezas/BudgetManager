@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './widgets/balance.dart';
 import './widgets/chart.dart';
 import './widgets/add_transaction.dart';
+import './widgets/settings.dart';
 import './models/transaction.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   double _balance = 0;
-  final List<Transaction> _userTransactions = [];
+  List<Transaction> _userTransactions = [];
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
@@ -58,6 +59,13 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _balance -= amount;
       _userTransactions.add(newTx);
+    });
+  }
+
+  void _reset(double balance, List<Transaction> userTransactions) {
+    setState(() {
+      _balance = balance;
+      _userTransactions = userTransactions;
     });
   }
 
@@ -87,6 +95,19 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _startSettings(BuildContext ctx) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      context: ctx,
+      builder: (_) {
+        return Settings(_reset);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
@@ -97,8 +118,9 @@ class _HomePageState extends State<HomePage> {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.settings),
+          iconSize: 28,
           onPressed: () {
-            print("Settings");
+            _startSettings(context);
           },
         ),
       ],
