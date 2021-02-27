@@ -11,11 +11,14 @@ class Balance extends StatelessWidget {
         children: [
           Text(
             "${_balance.toStringAsFixed(2)} €",
-            style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontFamily: "OpenSans",
+                fontSize: 42,
+                fontWeight: FontWeight.bold),
           ),
-          const Text(
+          Text(
             "Balance",
-            style: TextStyle(fontSize: 18),
+            style: Theme.of(context).textTheme.headline5,
           ),
         ],
       ),

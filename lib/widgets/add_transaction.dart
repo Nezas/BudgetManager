@@ -39,7 +39,7 @@ class _AddTransactionState extends State<AddTransaction> {
         children: <Widget>[
           Text(
             widget._title,
-            style: TextStyle(fontSize: 18),
+            style: Theme.of(context).textTheme.headline5,
           ),
           Row(
             children: <Widget>[
@@ -54,7 +54,10 @@ class _AddTransactionState extends State<AddTransaction> {
               Container(
                 padding: EdgeInsets.only(left: 20, top: 15),
                 child: ElevatedButton(
-                  child: const Text("Submit"),
+                  child: const Text(
+                    "Submit",
+                    style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                  ),
                   onPressed: () {
                     _submitMoney();
                   },

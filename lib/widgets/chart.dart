@@ -41,7 +41,7 @@ class Chart extends StatelessWidget {
         children: [
           Text(
             "Weekly expenses",
-            style: TextStyle(fontSize: 18),
+            style: Theme.of(context).textTheme.headline5,
           ),
           Expanded(
             child: Card(

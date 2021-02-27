@@ -19,6 +19,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         accentColor: Colors.indigo,
+        fontFamily: "Quicksand",
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline5: TextStyle(
+                fontFamily: "OpenSans",
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+              headline6: TextStyle(
+                fontFamily: "Quicksand",
+                fontSize: 18,
+              ),
+            ),
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                  fontFamily: "OpenSans",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32,
+                ),
+              ),
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
@@ -113,7 +134,6 @@ class _HomePageState extends State<HomePage> {
     final appBar = AppBar(
       title: const Text(
         "Overview",
-        style: TextStyle(fontSize: 32),
       ),
       actions: <Widget>[
         IconButton(
@@ -141,14 +161,22 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
-                    label: const Text("Add money"),
+                    label: const Text(
+                      "Add money",
+                      style: TextStyle(
+                          fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                    ),
                     icon: Icon(Icons.add),
                     onPressed: () {
                       _startAddMoney(context);
                     },
                   ),
                   ElevatedButton.icon(
-                    label: const Text("Add expenses"),
+                    label: const Text(
+                      "Add expenses",
+                      style: TextStyle(
+                          fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                    ),
                     icon: Icon(Icons.remove),
                     onPressed: () {
                       _startAddExpenses(context);

@@ -34,17 +34,19 @@ class _SettingsState extends State<Settings> {
         children: <Widget>[
           Text(
             "Settings",
-            style: TextStyle(fontSize: 18),
+            style: Theme.of(context).textTheme.headline5,
           ),
-          SizedBox(
-            height: 20,
+          Divider(
+            indent: 10,
+            endIndent: 10,
+            thickness: 1,
           ),
           Row(
             children: [
               FlatButton.icon(
                 label: Text(
                   "Reset balance and expenses",
-                  style: TextStyle(fontSize: 18),
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 icon: Icon(Icons.cached),
                 onPressed: () {
