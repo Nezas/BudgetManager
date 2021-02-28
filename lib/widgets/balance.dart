@@ -10,7 +10,9 @@ class Balance extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "${_balance.toStringAsFixed(2)} €",
+            _balance == 0
+                ? "${_balance.toStringAsFixed(0)} €"
+                : "${_balance.toStringAsFixed(2)} €",
             style: TextStyle(
                 fontFamily: "OpenSans",
                 fontSize: 42,

@@ -17,9 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Budget Manager",
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        accentColor: Colors.indigo,
+        primarySwatch: Colors.green,
+        accentColor: Colors.greenAccent[700],
         fontFamily: "Quicksand",
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(primary: Colors.greenAccent[700]),
+        ),
         textTheme: ThemeData.light().textTheme.copyWith(
               headline5: TextStyle(
                 fontFamily: "OpenSans",

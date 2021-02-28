@@ -46,9 +46,16 @@ class _SettingsState extends State<Settings> {
               FlatButton.icon(
                 label: Text(
                   "Reset balance and expenses",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: TextStyle(
+                      fontFamily: "Quicksand",
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.redAccent),
                 ),
-                icon: Icon(Icons.cached),
+                icon: Icon(
+                  Icons.cached,
+                  color: Colors.redAccent,
+                ),
                 onPressed: () {
                   reset();
                 },
