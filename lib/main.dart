@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                 headline6: TextStyle(
                   fontFamily: "OpenSans",
                   fontWeight: FontWeight.bold,
-                  fontSize: 32,
+                  fontSize: 30,
                 ),
               ),
         ),
@@ -93,26 +93,26 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _startAddMoney(BuildContext context) {
+  void _startAddMoney(BuildContext ctx) {
     showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      context: context,
+      context: ctx,
       builder: (_) {
         return AddTransaction(_addMoney, "Add money");
       },
     );
   }
 
-  void _startAddExpenses(BuildContext context) {
+  void _startAddExpenses(BuildContext ctx) {
     showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      context: context,
+      context: ctx,
       builder: (_) {
         return AddTransaction(_addExpenses, "Add expenses");
       },

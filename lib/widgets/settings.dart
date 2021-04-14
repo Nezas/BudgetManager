@@ -43,7 +43,7 @@ class _SettingsState extends State<Settings> {
           ),
           Row(
             children: [
-              FlatButton.icon(
+              TextButton.icon(
                 label: Text(
                   "Reset balance and expenses",
                   style: TextStyle(

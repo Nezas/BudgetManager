@@ -56,7 +56,8 @@ class _AddTransactionState extends State<AddTransaction> {
                 child: ElevatedButton(
                   child: const Text(
                     "Submit",
-                    style: TextStyle(fontFamily: "Quicksand", fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontFamily: "Quicksand", fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
                     _submitMoney();
