@@ -27,14 +27,8 @@ class _AddTransactionState extends State<AddTransaction> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        top: 15,
-        left: 15,
-        right: 15,
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
-      height: MediaQuery.of(context).size.height * 0.2 +
-          MediaQuery.of(context).viewInsets.bottom,
+      padding: EdgeInsets.all(15),
+      height: MediaQuery.of(context).size.height * 0.2,
       child: Column(
         children: <Widget>[
           Text(

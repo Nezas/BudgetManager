@@ -97,7 +97,10 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
       ),
       context: ctx,
       builder: (_) {
@@ -110,7 +113,10 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
       ),
       context: ctx,
       builder: (_) {
@@ -123,7 +129,10 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
       ),
       context: ctx,
       builder: (_) {
