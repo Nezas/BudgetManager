@@ -173,6 +173,13 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                      ),
+                    ),
                     label: const Text(
                       "Add money",
                       style: TextStyle(
@@ -184,6 +191,13 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   ElevatedButton.icon(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                      ),
+                    ),
                     label: const Text(
                       "Add expenses",
                       style: TextStyle(

@@ -36,22 +36,25 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230,
-      child: Column(
-        children: [
-          Text(
-            "Weekly expenses",
-            style: Theme.of(context).textTheme.headline5,
-          ),
-          Expanded(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+      height: 250,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 10,
+        margin: EdgeInsets.all(15),
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Text(
+                "Weekly expenses",
+                style: Theme.of(context).textTheme.headline5,
               ),
-              elevation: 10,
-              margin: EdgeInsets.all(15),
-              child: Padding(
-                padding: EdgeInsets.all(10),
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: groupedTransactionValues.map((data) {
@@ -67,9 +70,9 @@ class Chart extends StatelessWidget {
                   }).toList(),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
